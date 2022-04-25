@@ -17,7 +17,6 @@ export class ListadoPersonasComponent implements OnInit {
   ngOnInit(): void {
     this.personaSerice.getAllPersonas()
       .subscribe(data => {
-        console.log('Datos de Api');
         this.personas = data;
       })
   }
