@@ -11,14 +11,32 @@ export class ListadoPersonasComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'email', 'subscribed', 'country', 'city']
   personas: Persona[] = [];
+  personaDetalle : any;
 
-  constructor( private personaSerice:PersonasService ) { }
+  constructor( private personaService:PersonasService ) { }
 
   ngOnInit(): void {
-    this.personaSerice.getAllPersonas()
+    this.personaService.getAllPersonas()
       .subscribe(data => {
         this.personas = data;
       })
   }
+
+  edit( id: number ){
+    this.personaService.getPersonaById(id)
+      .subscribe(data => {
+        this.personaDetalle = data;
+        this.personaService.disparadorDetalle.emit(this.personaDetalle);
+      })
+    
+  }
+
+  delete(id: number){
+    this.personaService.deleteById(id)
+    .subscribe( data => {
+      this.personas = data;
+      this.ngOnInit()
+    })
+}
 
 }

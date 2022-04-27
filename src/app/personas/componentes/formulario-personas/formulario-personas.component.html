@@ -1,0 +1,167 @@
+<div class="row">
+    <div class="col">
+        <form 
+            [formGroup]="miFormulario"
+            autocomplete="off"
+            (ngSubmit)="submitFormulario()">
+
+            <!-- Nombre -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Nombre de Usuario</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                            class="form-control"
+                            formControlName="name"
+                            value="{{personaDetalle?.name}}"
+                            placeholder="Nombre del usuario">
+                    <span 
+                        class="from-text text-danger"
+                        *ngIf="campoNoValido('name')">
+                        Campo obligatorio
+                    </span>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                    <input type="email"
+                            class="form-control"
+                            formControlName="email"
+                            value="{{personaDetalle?.email}}"
+                            placeholder="Email del usuario"
+                    >
+                    <span 
+                        class="from-text text-danger"
+                        *ngIf="campoNoValido('email')">
+                        {{emailErrorMsg}}
+                    </span>
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Contraseña</label>
+                <div class="col-sm-9">
+                    <input type="password"
+                            class="form-control"
+                            formControlName="password"
+                            value="{{personaDetalle?.password}}"
+                            placeholder="Password">
+                    <span 
+                            class="from-text text-danger"
+                            *ngIf="campoNoValido('password')">
+                            La contraseña debe ser mayor de 5 caracteres
+                    </span>
+                </div>
+            </div>
+
+            <!-- Password2 -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Confirmar la Contraseña</label>
+                <div class="col-sm-9">
+                    <input type="password"
+                            class="form-control"
+                            formControlName="password2"
+                            value="{{personaDetalle?.password}}"
+                            placeholder="Confirmar contraseña">
+                    <span 
+                            class="from-text text-danger"
+                            *ngIf="campoNoValido('password2')">
+                            Las contraseñas deben de ser iguales
+                    </span>
+                </div>
+            </div>
+
+            <!-- Subscribed -->
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-check">
+                        <input class="form-check-input" 
+                                type="checkbox"
+                                value="{{personaDetalle?.subscribed}}"
+                                id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Enviarme ofertas promocionales
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Country -->
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Pais</label>
+                <div class="col-sm-9">
+                    <select 
+                            id="pais" 
+                            name="pais" 
+                            formControlName="country" 
+                            class="form-control"
+                            >
+                        <option *ngFor="let pais of paises" [value]="pais">
+                            {{ pais }}
+                        </option>
+                    </select>
+                    <span 
+                        class="from-text text-danger"
+                        *ngIf="campoNoValido('nombre')">
+                        Campo obligatorio
+                    </span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Pais</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                            class="form-control"
+                            formControlName="country"
+                            value="{{personaDetalle?.country}}"
+                            placeholder="Pais">
+                    <span 
+                        class="from-text text-danger"
+                        *ngIf="campoNoValido('nombre')">
+                        Campo obligatorio
+                    </span>
+                </div>
+            </div>
+
+            <!-- City -->
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">City</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                            class="form-control"
+                            formControlName="city"
+                            value="{{personaDetalle?.city}}"
+                            placeholder="Ciudad">
+                    <span 
+                        class="from-text text-danger"
+                        *ngIf="campoNoValido('nombre')">
+                        Campo obligatorio
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button 
+                        class="btn btn-primary float-end"
+                        type="submit"
+                        [disabled]="miFormulario.pending"
+                        >Crear
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- <h2>Form Valid: {{miFormulario.valid}}</h2>
+<h2>Form Sttus: {{miFormulario.status}}</h2>
+<h2>Form Pending: {{miFormulario.pending}}</h2> -->
+
+
