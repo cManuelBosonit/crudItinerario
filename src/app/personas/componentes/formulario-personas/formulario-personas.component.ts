@@ -67,15 +67,23 @@ export class FormularioPersonasComponent implements OnInit {
     }
 
     submitFormulario(){
-    console.log(this.miFormulario);
     this.miFormulario.markAllAsTouched();
     }
 
     postForm(){
-      this.personaService.addPersona(this.miFormulario.getRawValue())
-      .subscribe( data => {
-        this.onRefesh.emit();
-      });    
+      const id = this.miFormulario.get('id')?.value;
+      if(id === null){
+        console.log('Crear');
+        this.personaService.addPersona(this.miFormulario.getRawValue())
+          .subscribe( data => {
+          this.onRefesh.emit();
+        });
+      }else{
+        this.personaService.editarPersona(id, this.miFormulario.getRawValue())
+          .subscribe( data => {
+            this.onRefesh.emit();
+          })
+        
+      }       
     }
-
 }

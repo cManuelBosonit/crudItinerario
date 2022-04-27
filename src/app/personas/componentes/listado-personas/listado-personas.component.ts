@@ -16,12 +16,12 @@ export class ListadoPersonasComponent implements OnInit {
 
   constructor( private personaService:PersonasService ) { }
 
-onRefresh(){
-  this.personaService.getAllPersonas()
+  onRefresh(){
+    this.personaService.getAllPersonas()
       .subscribe(data => {
         this.personas = data;
-      })
-}
+    })
+  }
 
   ngOnInit(): void {
     this.onRefresh()
@@ -34,12 +34,6 @@ onRefresh(){
         this.disparadorDetalle.emit(this.personaDetalle);
       }) 
   }
-
-  /* putForm(form: Persona){
-    this.personaService.editarPersona(this.activerouter.snapshot.paramMap.get('id'), form)
-      .subscribe(data =>{
-    })
-  } */
 
   delete(id: number){
     this.personaService.deleteById(id)
