@@ -10,7 +10,7 @@ export class PersonasService {
 
   url:string = "http://localhost:3000";
 
-  @Output() disparadorDetalle: EventEmitter<any> = new EventEmitter();
+  /* @Output() disparadorDetalle: EventEmitter<any> = new EventEmitter(); */
 
   constructor( private http:HttpClient) { }
 
@@ -27,6 +27,16 @@ export class PersonasService {
   deleteById(id: number):Observable<Persona[]>{
     const completeUrl = `${this.url}/personas/${id}`
     return this.http.delete<Persona[]>(completeUrl); 
+  }
+
+  editarPersona(id: any, form:Persona):Observable<Persona>{
+    const completeUrl = `${this.url}/personas/${id}`;
+    return this.http.put<Persona>(completeUrl, form); 
+  }
+
+  addPersona(form:Persona):Observable<Persona>{
+    const completeUrl = `${this.url}/personas`;
+    return this.http.post<Persona>(completeUrl, form); 
   }
 
 

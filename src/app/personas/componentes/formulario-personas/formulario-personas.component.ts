@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
 import { EmailValidatorService } from 'src/app/shared/validator/email-validator.service';
 import { ValidatorService } from 'src/app/shared/validator/validator.service';
+import { Persona } from '../../interfaces/persona.inteface';
 import { PersonasService } from '../../services/persona.service';
 
 
@@ -14,9 +15,12 @@ export class FormularioPersonasComponent implements OnInit {
 
   paises: string[] = ["España", "EEUU", "Francia", "Egipto", "México", "Portugal", "Italia", "China", "Japón", "Australia", "Gran Bretaña", "Escocia", "Irlanda"];
 
+  @Output() onRefesh = new EventEmitter()
+
   miFormulario: FormGroup = this.fb.group({
+    id: [],
     name: ['', [Validators.required]],
-     email: ['', [Validators.required, Validators.pattern(this.validatorService.emailPattern)],[this.emailValidator]],
+    email: ['', [Validators.required, Validators.pattern(this.validatorService.emailPattern)],[this.emailValidator]],
     password: ['', [Validators.required, Validators.minLength(5)]],
     password2: ['', [Validators.required]],
     country: ['',[Validators.required]],
@@ -45,26 +49,19 @@ export class FormularioPersonasComponent implements OnInit {
     private validatorService: ValidatorService,
     private emailValidator: EmailValidatorService) { }
 
-    crearForm = new FormGroup({
-      user: new FormControl(''),
-      password: new FormControl(''),
+/*     crearForm = new FormGroup({
       name: new FormControl(''),
-      surname: new FormControl(''),
-      companyEmail: new FormControl(''),
-      personalEmail: new FormControl(''),
+      email: new FormControl(''),
+      password: new FormControl(''),
+      country: new FormControl(''),
       city: new FormControl(''),
-      activate: new FormControl(''),
-      createdDate: new FormControl(''),
-      imagenUrl: new FormControl(''),
-      terminationDate: new FormControl(''),
-    });
-
+    }); */
 
     ngOnInit(): void {
-      this.personaService.disparadorDetalle.subscribe( data => {
+     /*  this.disparadorDetalle.subscribe( data => {
         console.log('data detalle', data);
-        this.personaDetalle = data;
-      })
+        this.miFormulario.patchValue(data);
+      }) */
 
       this.miFormulario.reset({
       nombre: '',
@@ -84,6 +81,13 @@ export class FormularioPersonasComponent implements OnInit {
     submitFormulario(){
     console.log(this.miFormulario);
     this.miFormulario.markAllAsTouched();
+    }
+
+    postForm(){
+      this.personaService.addPersona(this.miFormulario.getRawValue())
+      .subscribe( data => {
+        this.onRefesh.emit();
+      });    
     }
 
 }

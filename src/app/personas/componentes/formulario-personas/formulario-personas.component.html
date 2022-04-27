@@ -106,13 +106,15 @@
                     </select>
                     <span 
                         class="from-text text-danger"
-                        *ngIf="campoNoValido('nombre')">
+                        *ngIf="campoNoValido('city')">
                         Campo obligatorio
                     </span>
                 </div>
             </div>
 
-            <div class="row mb-3">
+            {{miFormulario.value | json}}
+
+            <!-- <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Pais</label>
                 <div class="col-sm-9">
                     <input type="text"
@@ -122,11 +124,11 @@
                             placeholder="Pais">
                     <span 
                         class="from-text text-danger"
-                        *ngIf="campoNoValido('nombre')">
+                        *ngIf="campoNoValido('country')">
                         Campo obligatorio
                     </span>
                 </div>
-            </div>
+            </div> -->
 
             <!-- City -->
             <div class="row mb-3">
@@ -150,8 +152,9 @@
                     <button 
                         class="btn btn-primary float-end"
                         type="submit"
+                        (click)="postForm()"
                         [disabled]="miFormulario.pending"
-                        >Crear
+                        >{{ miFormulario.value.id ? 'Editar' : 'Crear'}}
                     </button>
                 </div>
             </div>

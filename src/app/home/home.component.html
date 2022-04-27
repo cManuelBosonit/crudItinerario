@@ -2,8 +2,8 @@
     <div class="col">
         <!-- <app-detalle></app-detalle> -->
         <!-- <app-crear-persona></app-crear-persona> -->
-        <app-formulario-personas></app-formulario-personas>
-        <app-listado-personas></app-listado-personas>
+        <app-formulario-personas #formulario (onRefesh)="listado.onRefresh()"></app-formulario-personas>
+        <app-listado-personas #listado (disparadorDetalle)="formulario.miFormulario.patchValue($event)"></app-listado-personas>
     </div>
 </div>
 

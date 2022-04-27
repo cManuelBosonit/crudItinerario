@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Persona } from '../../interfaces/persona.inteface';
 import { PersonasService } from '../../services/persona.service';
 
@@ -12,21 +12,26 @@ export class ListadoPersonasComponent implements OnInit {
   displayedColumns: string[] = ['name', 'email', 'subscribed', 'country', 'city']
   personas: Persona[] = [];
   personaDetalle : any;
+  @Output() disparadorDetalle: EventEmitter<any> = new EventEmitter();
 
   constructor( private personaService:PersonasService ) { }
 
-  ngOnInit(): void {
-    this.personaService.getAllPersonas()
+onRefresh(){
+  this.personaService.getAllPersonas()
       .subscribe(data => {
         this.personas = data;
       })
+}
+
+  ngOnInit(): void {
+    this.onRefresh()
   }
 
   edit( id: number ){
     this.personaService.getPersonaById(id)
       .subscribe(data => {
         this.personaDetalle = data;
-        this.personaService.disparadorDetalle.emit(this.personaDetalle);
+        this.disparadorDetalle.emit(this.personaDetalle);
       })
     
   }
@@ -34,8 +39,7 @@ export class ListadoPersonasComponent implements OnInit {
   delete(id: number){
     this.personaService.deleteById(id)
     .subscribe( data => {
-      this.personas = data;
-      this.ngOnInit()
+      this.onRefresh();
     })
 }
 
