@@ -2,7 +2,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
 import { EmailValidatorService } from 'src/app/shared/validator/email-validator.service';
 import { ValidatorService } from 'src/app/shared/validator/validator.service';
-import { Persona } from '../../interfaces/persona.inteface';
 import { PersonasService } from '../../services/persona.service';
 
 
@@ -23,6 +22,7 @@ export class FormularioPersonasComponent implements OnInit {
     email: ['', [Validators.required, Validators.pattern(this.validatorService.emailPattern)],[this.emailValidator]],
     password: ['', [Validators.required, Validators.minLength(5)]],
     password2: ['', [Validators.required]],
+    subscribed: [],
     country: ['',[Validators.required]],
     city: ['',[Validators.required]]
   }, {
@@ -49,19 +49,7 @@ export class FormularioPersonasComponent implements OnInit {
     private validatorService: ValidatorService,
     private emailValidator: EmailValidatorService) { }
 
-/*     crearForm = new FormGroup({
-      name: new FormControl(''),
-      email: new FormControl(''),
-      password: new FormControl(''),
-      country: new FormControl(''),
-      city: new FormControl(''),
-    }); */
-
     ngOnInit(): void {
-     /*  this.disparadorDetalle.subscribe( data => {
-        console.log('data detalle', data);
-        this.miFormulario.patchValue(data);
-      }) */
 
       this.miFormulario.reset({
       nombre: '',
@@ -69,7 +57,7 @@ export class FormularioPersonasComponent implements OnInit {
       userName: '',
       password: '',
       password2: '',
-      condiciones: false
+      subscribed: false
       })
     }
 

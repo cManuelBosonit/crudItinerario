@@ -32,15 +32,20 @@ onRefresh(){
       .subscribe(data => {
         this.personaDetalle = data;
         this.disparadorDetalle.emit(this.personaDetalle);
-      })
-    
+      }) 
   }
+
+  /* putForm(form: Persona){
+    this.personaService.editarPersona(this.activerouter.snapshot.paramMap.get('id'), form)
+      .subscribe(data =>{
+    })
+  } */
 
   delete(id: number){
     this.personaService.deleteById(id)
     .subscribe( data => {
       this.onRefresh();
     })
-}
+  }
 
 }
