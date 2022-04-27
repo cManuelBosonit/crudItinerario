@@ -1,6 +1,8 @@
 <div class="row">
     <div class="col">
         <app-formulario-personas #formulario (onRefesh)="listado.onRefresh()"></app-formulario-personas>
+    </div>
+    <div class="col">
         <app-listado-personas #listado (disparadorDetalle)="formulario.miFormulario.patchValue($event)"></app-listado-personas>
     </div>
 </div>
