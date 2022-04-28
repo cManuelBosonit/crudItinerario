@@ -9,7 +9,29 @@ import { PersonasService } from '../../services/persona.service';
 })
 export class ListadoPersonasComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'email', 'subscribed', 'country', 'city']
+  displayedColumns: string[] = ['name', 'email', 'subscribed', 'country', 'city'];
+  tableDef: Array<any> = [
+    {
+      key: 'name',
+      header: 'Nombre de Usuario'
+    },
+    {
+      key: 'email',
+      header: 'Correo'
+    },
+    {
+      key: 'subscribed',
+      header: 'Suscrito'
+    },
+    {
+      key: 'country',
+      header: 'Pais'
+    },
+    {
+      key: 'city',
+      header: 'Ciudad'
+    }  
+  ]
   personas: Persona[] = [];
   personaDetalle : any;
   @Output() disparadorDetalle: EventEmitter<any> = new EventEmitter();

@@ -1,13 +1,13 @@
 <table mat-table [dataSource]="personas" class="mat-elevation-z8">
 
-    <ng-container *ngFor="let column of displayedColumns"
-                [matColumnDef]="column">
-      <th mat-header-cell *matHeaderCellDef> {{column | titlecase}} </th>
+    <ng-container *ngFor="let column of tableDef"
+                [matColumnDef]="column.key">
+      <th mat-header-cell *matHeaderCellDef> {{column.header | titlecase}} </th>
       <td mat-cell *matCellDef="let element">
-        <label *ngIf="column != 'subscribed'">{{element[column]}}</label>
-        <mat-icon *ngIf="column == 'subscribed' && element[column] == true">check</mat-icon>
-        <mat-icon *ngIf="column == 'subscribed' && element[column] == false">close</mat-icon>
-         <!-- {{element[column]}} --> </td>    
+        <label *ngIf="column.key != 'subscribed'">{{element[column.key]}}</label>
+        <mat-icon *ngIf="column.key == 'subscribed' && element[column.key] == true">check</mat-icon>
+        <mat-icon *ngIf="column.key == 'subscribed' && element[column.key] == false">close</mat-icon>
+      </td>    
     </ng-container>
 
     <ng-container matColumnDef="actionButton">
