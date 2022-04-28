@@ -1,0 +1,40 @@
+{
+  "personas": [
+    {
+      "id": 1, 
+      "name": "Manuel", 
+      "password": "seguro", 
+      "email": "mh@company.com", 
+      "subscribed": true, 
+      "country": "España",
+      "city": "Madrid"
+    },
+    {
+      "id": 2, 
+      "name": "Carlos", 
+      "password": "seguro", 
+      "email": "ch@company.com", 
+      "subscribed": false, 
+      "country": "Portugal",
+      "city": "Oporto"
+    },
+    {
+      "id": 3, 
+      "name": "Irene", 
+      "password": "seguro", 
+      "email": "ip@company.com", 
+      "subscribed": true, 
+      "country": "Italia",
+      "city": "Roma"
+    },
+    {
+      "id": 4, 
+      "name": "Julio", 
+      "password": "seguro", 
+      "email": "jh@company.com", 
+      "subscribed": true, 
+      "country": "Francia",
+      "city": "Paris"
+    }
+  ]
+}

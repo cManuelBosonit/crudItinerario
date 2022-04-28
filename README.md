@@ -3,7 +3,9 @@
 ⚙️ Configuración
 Para poder obtener datos de un api en este CRUD se ha utilizado JSON Server, https://www.npmjs.com/package/json-server.
 En este caso se ha añadido en la carpeta de assets el JSON inicial para poder hacer funcionar el CRUD.
-Para ello sera necesario arrancar el JSON server con el comando 
+Para ello sera necesario arrancar el JSON server con el comando.
+En la carpeta src/assets se encuentra el archibo db.json con el que se realizo el ejercicio.
+
 ```
 json-server --watch db.json
 ```
