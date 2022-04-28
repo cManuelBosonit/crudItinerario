@@ -1,5 +1,19 @@
 # Crud
 
+⚙️ Configuración
+Para poder obtener datos de un api en este CRUD se ha utilizado JSON Server, https://www.npmjs.com/package/json-server.
+En este caso se ha añadido en la carpeta de assets el JSON inicial para poder hacer funcionar el CRUD.
+Para ello sera necesario arrancar el JSON server con el comando 
+```
+json-server --watch db.json
+```
+Se recibiran las presuestas:
+  Resources
+  http://localhost:3000/personas
+
+  Home
+  http://localhost:3000
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.6.
 
 ## Development server
