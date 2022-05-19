@@ -9,7 +9,6 @@ import { PersonasService } from '../../services/persona.service';
 })
 export class ListadoPersonasComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'email', 'subscribed', 'country', 'city'];
   tableDef: Array<any> = [
     {
       key: 'name',
@@ -30,8 +29,14 @@ export class ListadoPersonasComponent implements OnInit {
     {
       key: 'city',
       header: 'Ciudad'
-    }  
-  ]
+    },
+    {
+      key: 'actions',
+      header: 'Acciones'
+    }   
+  ];
+  displayedColumns: string[] = this.tableDef.map(col => col.key);
+
   personas: Persona[] = [];
   personaDetalle : any;
   @Output() disparadorDetalle: EventEmitter<any> = new EventEmitter();

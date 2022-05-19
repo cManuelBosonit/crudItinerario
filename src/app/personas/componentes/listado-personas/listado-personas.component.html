@@ -7,26 +7,22 @@
         <label *ngIf="column.key != 'subscribed'">{{element[column.key]}}</label>
         <mat-icon *ngIf="column.key == 'subscribed' && element[column.key] == true">check</mat-icon>
         <mat-icon *ngIf="column.key == 'subscribed' && element[column.key] == false">close</mat-icon>
-      </td>    
-    </ng-container>
-
-    <ng-container matColumnDef="actionButton">
-      <th mat-header-cell *matHeaderCellDef> Actions</th>
-      <td mat-cell *matCellDef="let persona"> 
         <mat-icon 
-                (click)="edit(persona.id)"
+                *ngIf="column.key == 'actions'"
+                (click)="edit(element.id)"
                 >
                 edit
         </mat-icon>
         <mat-icon
-                (click)="delete(persona.id)"
+                *ngIf="column.key == 'actions'"
+                (click)="delete(element.id)"
                 >
                 delete
         </mat-icon>
-      </td>    
+      </td>       
     </ng-container>
     
-    <tr mat-header-row *matHeaderRowDef="displayedColumns.concat(['actionButton'])"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns.concat(['actionButton']);"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
   </table>
